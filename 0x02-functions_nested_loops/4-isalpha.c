@@ -1,4 +1,4 @@
-#include <main.h>
+#include "main.h"
 
 /**
  * _isalpha - check if the given character is lower case.
@@ -6,7 +6,7 @@
  *
  * Return: 1 (True) else 0 (False)
  */
-int _isalpha(char c)
+int _isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
