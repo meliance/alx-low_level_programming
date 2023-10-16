@@ -8,11 +8,12 @@
 
 int _strlen(char *s)
 {
-	char *s[] = "Programming is fun";
-	int i;
+	char *str;
+	int len;
 
-	for (i = 0; s[i] != '\0'; ++i)
+	str = "My first strlen!";
+	len = _strlen(str);
+	printf("%d\n", len);
 
-	printf("Length of the string: %d", i);
 	return (0);
 }
