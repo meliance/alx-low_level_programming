@@ -1,27 +1,29 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * print_chessboard - prints the chessboard
+ * print_chessboard - prints the chess board
  *
- * @a: the row of the array
+ * @a: input pointer (2 dimenstional array)
  *
- * Return: nothing
- */
+ * Return: return nothing
+*/
 
 void print_chessboard(char (*a)[8])
 {
 	int i, j;
 
-	for (i = 0; i < 8; i++)
+	i = 0;
+	j = 0;
+	while (i < 64)
 	{
-		for (j = 0; j < 8; j++)
+		if (i % 8 == 0 && i != 0)
 		{
-			if (j == 7)
-			{
-				_putchar(a[i][j]);
-				_putchar('\n');
-			}
-			else
-				_putchar(a[i][j]);
+			j = i;
+			_putchar('\n');
 		}
+
+		_putchar(a[i / 8][i - j]);
+		i++;
 	}
+	_putchar('\n');
 }
