@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
  * _strdup - Duplicate a string using malloc
@@ -6,16 +6,20 @@
  * Return: Pointer to a the new duped string
  */
 
-char *_strdup(char *str){
+char *_strdup(char *str)
+{
 	char *a;
-	in i, c;
+	int i, c;
 
 	if (str == NULL)
 		return (NULL);
+
 	for (i = 0; str[i] != '\0'; i++)
-	a = malloc(i * sizeof(a) + 1);
+
+	a = malloc(i * sizeof(*a) + 1);
 	if (a == NULL)
 		return (NULL);
+
 	for (c = 0; c < i; c++)
 		a[c] = str[c];
 	a[c] = '\0';
