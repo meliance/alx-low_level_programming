@@ -7,19 +7,17 @@
  *
  * Return: pointer to the new node, or NULL if it fails
  */
-
 listint_t *add_nodeint(listint_t **head, const int n)
 {
-	listint_t = *added;
+    listint_t *new;
 
-	added = malloc(sizeof(listint_t));
-	if (!added)
-	{
-		return (NULL);
-	}
-	added->n = n;
-	added->next = *head;
-	*head = added;
+    new = malloc(sizeof(listint_t));
+    if (!new)
+        return (NULL);
 
-	return (added);
+    new->n = n;
+    new->next = *head;
+    *head = new;
+
+    return (new);
 }
