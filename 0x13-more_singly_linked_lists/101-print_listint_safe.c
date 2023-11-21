@@ -11,7 +11,7 @@ size_t print_listint_safe(const listint_t *head)
 	size_t num = 0;
 	long int diff;
 	
-   	 while (head)
+	while (head)
 	{
 		diff = head - head->next;
 		num++;
