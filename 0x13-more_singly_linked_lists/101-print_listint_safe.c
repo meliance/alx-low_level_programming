@@ -1,38 +1,57 @@
-#include <stdbool.h>
 #include "lists.h"
- /* This function can print lists with a loop*/
- /* i can go through the list only once*/
- /* If the function fails, exits the program with status 98*/
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
- * print_listint_safe - prints a linked list
- * @head: points to the beginning of a linked list
- * Return: the number of nodes in a list
+ * find_listint_loop_pl - finds a loop in a linked list
+ *
+ * @head: linked list to search
+ *
+ * Return: address of node where loop starts/returns, NULL if no loop
  */
-
-size_t print_listint_safe(const listint_t *head)
+listint_t *find_listint_loop_pl(listint_t *head)
 {
-	const listint_t *fast_ptr, *slow_ptr;
-	size_t size;
-
-	size = 0;
+	listint_t *ptr, *end;
 
 	if (head == NULL)
-		return (0);
+		return (NULL);
 
-	slow_ptr = head;
-	fast_ptr = head->next;
-
-	while (fast_ptr != NULL && fast_ptr < slow_ptr)
+	for (end = head->next; end != NULL; end = end->next)
 	{
-		size += 1;
-	printf("[%p] %i\n", (void *)slow_ptr, slow_ptr->n);
-		slow_ptr = slow_ptr->next;
-		fast_ptr = fast_ptr->next;
+		if (end == end->next)
+			return (end);
+		for (ptr = head; ptr != end; ptr = ptr->next)
+			if (ptr == end->next)
+				return (end->next);
 	}
-	printf("[%p] %i\n", (void *)slow_ptr, slow_ptr->n);
-	size += 1;
-	if (fast_ptr)
-		printf("-> [%p] %i\n", (void *)fast_ptr, fast_ptr->n);
+	return (NULL);
+}
 
-	return (size);
+/**
+ * print_listint_safe - prints a linked list, even if it
+ * has a loop
+ *
+ * @head: head of list to print
+ *
+ * Return: number of nodes printed
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t len = 0;
+	int loop;
+	listint_t *loopnode;
+
+	loopnode = find_listint_loop_pl((listint_t *) head);
+
+	for (len = 0, loop = 1; (head != loopnode || loop) && head != NULL; len++)
+	{
+		printf("[%p] %d\n", (void *) head, head->n);
+		if (head == loopnode)
+			loop = 0;
+		head = head->next;
+	}
+
+	if (loopnode != NULL)
+		printf("-> [%p] %d\n", (void *) head, head->n);
+	return (len);
 }
