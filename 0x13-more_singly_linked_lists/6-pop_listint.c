@@ -3,8 +3,8 @@
 /**
  * pop_listint - deletes the head node of linked list
  * @head: points the first element in linked list
+ *
  * Return: always 0
- * 
  */
 
 int pop_listint(listint_t **head)
@@ -13,8 +13,7 @@ int pop_listint(listint_t **head)
 	int num;
 
 	if (!head || !*head)
-	    return (0);
-
+		return (0);
 	num = (*head)->n;
 	temp = (*head)->next;
 	free(*head);
